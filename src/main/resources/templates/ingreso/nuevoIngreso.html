@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="/plantilla/template">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>Nuevo producto</title>
+
+
+
+</head>
+
+<body id="page-top">
+
+
+	<!-- Begin Page Content -->
+	<div layout:fragment="main" class="container-fluid">
+
+		<!-- DataTales Example -->
+		<div class="card shadow mb-4">
+			<div class="card-header py-3">
+				<h6 class="m-0 font-weight-bold text-primary">Nuevo producto</h6>
+			</div>
+			<div class="card-body">
+				<form th:action="@{/guardarProducto}" th:object="${nuevoProd}" method="post">
+					<input type="text" th:field="*{idProducto}">
+
+
+					<div class="form-group">
+						<label for="email">Nombres:</label>
+						<input type="text" th:field="*{nombre}" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="pwd">Descripción:</label>
+						<input type="text" th:field="*{descripcion}" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="pwd">Precio:</label>
+						<input type="text" th:field="*{precio}" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="pwd">Tipo:</label>
+						<select class="form-control" th:field="*{tipoProducto.idTipo}">
+							<option value="0" selected>Selecciona un tipo</option>
+							<option th:each="tip:${listatipo}" th:value="${tip.idTipo}" th:text="${tip.nombreTipo}">
+							</option>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label for="pwd">Estado:</label>
+						<select class="form-control" th:field="*{estado}">
+							<option value="false" selected>Seleccione un estado</option>
+							<option value="true">Activo</option>
+							<option value="false">Inactivo</option>
+						</select>
+					</div>
+
+					<button type="submit" class="btn btn-primary">Crear</button>
+				</form>
+			</div>
+		</div>
+
+	</div>
+	<!-- /.container-fluid -->
+
+</body>
+
+</html>

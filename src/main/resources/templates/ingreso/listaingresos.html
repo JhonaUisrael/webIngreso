@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="/plantilla/template">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>Lista ingresos</title>
+
+
+
+</head>
+
+<body id="page-top">
+
+	<!-- Begin Page Content -->
+	<div layout:fragment="main" class="container-fluid">
+
+		<!-- DataTales Example -->
+		<div class="card shadow mb-4">
+			<div class="card-header py-3">
+				<h6 class="m-0 font-weight-bold text-primary">Listado productos</h6>
+			</div>
+			<div class="card-body">
+				<a th:href="@{/nuevoproducto}" class="btn btn-primary">
+					<i class="fa fa-book"></i>
+				</a>
+				<div class="table-responsive">
+					<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+						<thead>
+							<tr>
+								<th>id</th>
+								<th>Tipo Producto</th>
+								<th>Producto</th>
+								<th>Descripción</th>
+								<th>Precio</th>
+								<th>Estado</th>
+								<th>Acciones</th>
+							</tr>
+						</thead>
+						<tfoot>
+							<tr>
+								<th>id</th>
+								<th>Tipo Producto</th>
+								<th>Producto</th>
+								<th>Descripción</th>
+								<th>Precio</th>
+								<th>Estado</th>
+								<th>Acciones</th>
+
+							</tr>
+						</tfoot>
+						<tbody>
+							<tr th:each="prod:${listadoproducto}">
+								<th th:text="${prod.idProducto}"></th>
+								<th th:text="${prod.tipoProducto.nombreTipo}"></th>
+								<th th:text="${prod.nombre}"></th>
+								<th th:text="${prod.descripcion}"></th>
+								<th th:text="${prod.precio}"></th>
+								<th th:text="(${prod.estado}==true)?'Activo':'Inactivo'"></th>
+								<th>
+									<a th:href="@{'/nuevoproducto?id='+${prod.idProducto}}">
+										<i class="fa fa-file"></i>
+									</a>
+									<a th:href="@{'/borrar?id=' + ${prod.idProducto}}">
+										<i class="fa fa-trash"></i>
+									</a>
+
+								</th>
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!-- /.container-fluid -->
+
+</body>
+
+</html>
